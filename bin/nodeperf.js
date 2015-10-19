@@ -15,14 +15,22 @@ Nodeperf.prototype = {
 };
 
 ////////////////////
+// test snippet
+var fs = require('fs');
 var sleep = require('sleep-async')().sleep;
 
 var conf = {
   probe = {
+    type: 'process',
+    path: '/usr/bin/vm_stat',
   };
   processor = {
+    grammer: {
+    },
   };
 };
+
+conf.processor.grammer = fs.readFileSync('test.jison', 'utf8');
 
 var p = new Nodeperf();
 p.init(conf);

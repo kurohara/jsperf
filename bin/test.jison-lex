@@ -1,0 +1,22 @@
+%lex
+
+%%
+[+\-]?[0-9]+\.[0-9]+		{return 'FNUM';}
+[+\-]?[0-9]+		{return 'INUM';}
+[A-Za-z0-9:]+		{return 'SYMBOL';}
+\n			{return 'NL';}
+<<EOF>>			{return 'EOF';}
+\(.*\)			{return 'DESC';}
+\s+			/* */
+
+%%
+
+lexer.setInput("aaaa bbbb cccc 0.1\n-1.5 5010 -1\n( this item is for 2.0 user) ");
+
+while (true) {
+  var tok = lexer.lex();
+  if (tok === 'EOF') {
+    break;
+  }
+  console.log(tok);
+}

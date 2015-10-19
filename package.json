@@ -33,5 +33,12 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt": "~0.4.5"
   },
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "jison": "^0.4.15",
+    "jison-semi-passive": "kurohara/jison-semi-passive",
+    "sleep-async": "^1.0.1",
+    "underscore": "^1.8.3",
+    "wait.for": "^0.6.6"
+  }
 }
