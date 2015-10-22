@@ -1,5 +1,5 @@
 {
-  "name": "nodeperf",
+  "name": "jsperf",
   "description": "The best project ever.",
   "version": "0.1.0",
   "homepage": "",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://kurohara@bitbucket.org/kurohara/nodeperf.git"
+    "url": "https://kurohara@bitbucket.org/kurohara/jsperf.git"
   },
   "bugs": {
     "url": ""
@@ -20,7 +20,10 @@
       "url": "/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "lib/nodeperf",
+  "main": "lib/jsperf",
+  "bin": {
+    "jsperf": "bin/jsperf.js",
+  },
   "engines": {
     "node": ">= 0.8.0"
   },
@@ -35,10 +38,7 @@
   },
   "keywords": [],
   "dependencies": {
-    "jison": "^0.4.15",
     "jison-semi-passive": "kurohara/jison-semi-passive",
-    "sleep-async": "^1.0.1",
     "underscore": "^1.8.3",
-    "wait.for": "^0.6.6"
   }
 }
