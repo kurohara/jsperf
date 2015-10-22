@@ -1,24 +1,27 @@
 var jisonmod = require('jison-semi-passive');
 var spawn = require('child_process').spawn;
 
-var PerfController = function PerfController() {
+var PerfController = function PerfController(monitor, datastore) {
+  // setup monitor
+  if (monitor.syntax) {
+    this.processor = new PerfController.Parser(monitor.syntax);
+    this.processor.yy.controller = this;
+    this.processor_state = { iseof: false };
+    this.remaindata = "";
+  } else {
+  }
+  if (monitor.oscommand) {
+    this.oscommand = monitor.oscommand;
+    this.args = monitor.args;
+  } else {
+  }
+  this.name = "vm_stat";
+  
+  // setup datastore
+  this.datastore = datastore;
 };
 PerfController.Parser = jisonmod.Parser;
 PerfController.prototype = {
-  addMonitor: function(mon) {
-    if (mon.syntax) {
-      this.processor = new PerfController.Parser(mon.syntax);
-      this.processor.yy.controller = this;
-      this.processor_state = { iseof: false };
-      this.remaindata = "";
-    } else {
-    }
-    if (mon.oscommand) {
-      this.oscommand = mon.oscommand;
-      this.args = mon.args;
-    } else {
-    }
-  },
   start: function() {
     this.child = spawn(this.oscommand, this.args);
     this.child.stdout.on('data', function(chunk) {
@@ -40,16 +43,18 @@ PerfController.prototype = {
     this.child.kill('SIGTERM');
   },
   connect: function() {
-    console.log("connect");
+    this.datastore.database("nodeperf");
+    this.datastore.connect();
+    this.datastore.collection(this.name);
   },
   close: function() {
-    console.log("close");
+    this.datastore.close();
   },
   send: function(data) {
-    console.log(data);
+    this.datastore.insert(data);
   },
   keys: function(keys) {
-    console.log(keys);
+    /* if datastore requires table schema has defined before data insert, do it here */
   },
 };
 PerfController.prototype.constructor = PerfController;

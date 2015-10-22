@@ -24,15 +24,9 @@ stat
 
 block
 	: greetings header datalist
+	  {
+	  }
 	| block greetings header datalist
-	;
-
-firsthead
-	: greetings header
-	{
-
-
-	}
 	;
 
 greetings
@@ -57,7 +51,7 @@ wordlist
 
 header
 	: symbollist NL
-	  { yy.controller.keys($1); }
+	  { yy.keys = $1; }
 	;
 
 symbollist
@@ -76,13 +70,13 @@ datalist
 
 data
 	: INUM
-	  { $$ = [ $1 ]; }
+	  { yy.keyindex = 0; $$ = {}; $$[yy.keys[yy.keyindex++]] = $1; }
 	| FNUM
-	  { $$ = [ $1 ]; }
+	  { yy.keyindex = 0; $$ = {}; $$[yy.keys[yy.keyindex++]] = $1; }
 	| data INUM
-	  { $1.push($2); $$ = $1; }
+	  { $1[yy.keys[yy.keyindex++]] = $2; $$ = $1; }
 	| data FNUM
-	  { $1.push($2); $$ = $1; }
+	  { $1[yy.keys[yy.keyindex++]] = $2; $$ = $1; }
 	;
 %%
 
