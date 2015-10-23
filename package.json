@@ -38,6 +38,7 @@
   },
   "keywords": [],
   "dependencies": {
+    "commander": "^2.9.0",
     "jison-semi-passive": "kurohara/jison-semi-passive",
     "jsperf.datastore.mongo": "kurohara/jsperf.datastore.mongo",
     "jsperf.monitor.vm_stat": "kurohara/jsperf.monitor.vm_stat",
