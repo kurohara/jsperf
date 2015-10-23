@@ -16,13 +16,26 @@ The datasource.mongo is a data source for mongodb.
 In the Monitor components, jsperf is using [jison-semi-passive](https://github.com/kurohara/jison-semi-passive.git) as input analyzer, so you can define your own analyzer by writing bnf of input stream.  
 
 ## Getting Started
-Install the module with: `npm install kurohara/jsperf`
+Install the module with: 
+```
+npm install kurohara/jsperf
+```
+You also need to install Monitor module and Datastore module, currently, only 'vm_stat' monitor and 'mongodb' datastore is exist.
+```
+npm install kurohara/jsperf.monitor.vm_stat
+npm install kurohara/jsperf.datastore.mongo
+```
 
-After installing, you need to start mongodb because only mongodb datasource is provided currently.  
+After installing, you need to start mongodb.  
 
-`node bin/jsperf.js`
+Then start jsperf like:  
 
+`node bin/jsperf.js -m vm_stat -d mongo`  
 will start jsperf, currently just inserts vm_stat output into mongodb.  
+
+or
+`node bin/jsperf.js` to see the command line help.  
+
 
 To stop jsperf, just type Ctrl-C.  
 
