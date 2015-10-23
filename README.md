@@ -1,4 +1,4 @@
-# nodeperf [![Build Status](https://secure.travis-ci.org//nodeperf.png?branch=master)](http://travis-ci.org//nodeperf)
+# jsperf  
 
 This software is for analyzing streaming log output especially of system statistics command.  
 The name 'jsperf' may be changed in future, I have no good idea about the name suitable for this software just now.  
@@ -13,7 +13,7 @@ The Monitor and Datasource are pluggable, currently, there are just one module f
 The monitor.vm_stat  is a monitor for the 'vm_stat' command.  
 The datasource.mongo is a data source for mongodb.  
 
-jsperf is using jison-semi-passive as input analyzer, so you can define your own analyzer by writing bnf of input stream.  
+In the Monitor components, jsperf is using [jison-semi-passive](https://github.com/kurohara/jison-semi-passive.git) as input analyzer, so you can define your own analyzer by writing bnf of input stream.  
 
 ## Getting Started
 Install the module with: `npm install kurohara/jsperf`
@@ -28,11 +28,11 @@ To stop jsperf, just type Ctrl-C.
 
 You can check the data with doing:  
 
-`
+````
 $ mongo
 > use jsperf
 > db.vm_stat.find()
-`
+````
 
 ## Documentation
 _(Coming soon)_
