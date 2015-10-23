@@ -5,7 +5,7 @@
  *
  * Copyright(C) 2015 Hiroyoshi Kurohara(Microgadget,inc.) all rights reserved.
  */
-var Controller = require('../lib/perfcontroller');
+var Controller = require('../lib/jsperf').Controller;
 var monitor = require('jsperf.monitor.vm_stat');
 var Datastore = require('jsperf.datastore.mongo');
 
