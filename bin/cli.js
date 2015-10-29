@@ -23,11 +23,11 @@ function load_module(prefix, modulename) {
 }
 
 if (program.monitor.length > 0 && program.data.length > 0) {
-  var monitor = load_module('jsperf.monitor.', program.monitor);
+  var Monitor = load_module('jsperf.monitor.', program.monitor);
   var Datastore = load_module('jsperf.datastore.', program.data);
 
-  var controller = new Controller(monitor, new Datastore());
-  controller.start();
+  var controller = new Controller(Monitor, Datastore);
+  controller.monstart();
 
 } else {
   program.outputHelp();

@@ -1,6 +1,6 @@
 'use strict';
 
-var nodeperf = require('../lib/nodeperf.js');
+var jsperf = require('../lib/jsperf.js');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -22,6 +22,33 @@ var nodeperf = require('../lib/nodeperf.js');
     test.ifError(value)
 */
 
+var y = (function () {/*
+%start block
+%%
+block
+	: words EOF
+	{ yy.controller.dsSend($1); }
+;
+words
+	: SYMBOL
+	{ $$ = []; $$.push($1); }
+	| words SYMBOL
+	{ $1.push($2); $$ = $1; }
+;
+%%
+
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+
+var indata = "abc def";
+
+var Monitor = function Monitor() {
+  this.syntax = y;
+  this.dataname = "test";
+}
+Monitor.prototype = {
+};
+Monitor.prototype.constructor = Monitor;
+
 exports['awesome'] = {
   setUp: function(done) {
     // setup here
@@ -30,7 +57,11 @@ exports['awesome'] = {
   'no args': function(test) {
     test.expect(1);
     // tests here
-    test.equal(nodeperf.awesome(), 'awesome', 'should be awesome.');
+    var controller = new jsperf.Controller(Monitor);
+    controller._processdata(indata);
+    controller._processclose();
+    var parsed = controller.datastore.fetch({});
+    test.ok(true);
     test.done();
   },
 };
