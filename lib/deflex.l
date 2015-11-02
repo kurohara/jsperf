@@ -5,6 +5,7 @@
  * E-mail: kurohara@yk.rim.or.jp, kurohara@microgadget-inc.com
  * Lisenced under MIT the lincense.
  */
+%options flex
 
 SYMBOL						[A-Za-z_][A-Za-z0-9_]*
 LITERALS					'"'([^\"]*)'"'
