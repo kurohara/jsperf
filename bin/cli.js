@@ -1,9 +1,9 @@
 /**
  * jsperf cli.
- * *** UNDER CONSTRUCTION, FOR BEHAVIOR TEST ***
- * Uses mongodb as datastore, and monitors vm_stat command output.
  *
- * Copyright(C) 2015 Hiroyoshi Kurohara(Microgadget,inc.) all rights reserved.
+ * Copyright(C) 2015 Hiroyoshi Kurohara(Microgadget,inc.).
+ * E-mail: kurohara@yk.rim.or.jp, kurohara@microgadget-inc.com
+ * Lisenced under MIT the lincense.
  */
 var Controller = require('../lib/jsperf').Controller;
 
