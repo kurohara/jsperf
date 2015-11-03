@@ -27,7 +27,7 @@ if (program.monitor.length > 0 && program.data.length > 0) {
   var Datastore = load_module('jsperf.datastore.', program.data);
 
   var controller = new Controller(Monitor, Datastore);
-  controller.monstart();
+  controller.monStart();
 
 } else {
   program.outputHelp();
